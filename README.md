@@ -1,70 +1,254 @@
-# Getting Started with Create React App
+# 🔍 **Поисковое Приложение на React**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Это **поисковое веб-приложение**, использующее Google Search API для получения результатов поиска по разным типам контента (веб-страницы, изображения, новости, видео).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🏗️ **Структура проекта**
 
-### `npm start`
+```
+project/
+├── public/
+│   ├── index.html            # Главная HTML-страница
+│   ├── favicon.ico           # Иконка приложения
+│   └── robots.txt           # Файл для поисковых роботов
+├── src/
+│   ├── components/
+│   │   ├── App/             # Главный компонент приложения
+│   │   ├── Navbar/          # Навигационная панель
+│   │   ├── Footer/          # Подвал (заготовка)
+│   │   ├── Results/         # Компонент результатов поиска
+│   │   ├── Routes/          # Маршрутизация
+│   │   ├── Search/          # Поисковая строка (заготовка)
+│   │   ├── Loading/         # Индикатор загрузки
+│   │   └── context/         # Контекст для управления состоянием
+│   ├── image/              # Изображения и иконки
+│   └── index.js            # Точка входа
+├── craco.config.js         # Конфигурация для LESS
+├── package.json            # Зависимости
+└── manifest.json           # Конфигурация PWA
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🎯 **Основные возможности**
 
-### `npm test`
+### 🔎 **Поисковая система**
+- **Поиск по веб-страницам** (`/search`)
+- **Поиск изображений** (`/images`)
+- **Поиск новостей** (`/news`) - *в разработке*
+- **Поиск видео** (`/videos`) - *в разработке*
+- **Настройка параметров поиска**: регион, язык, сортировка
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ⚙️ **Настройки поиска**
+- **Регион поиска** (например, `us`, `ru`, `de`)
+- **Язык результатов** (`en`, `ru`, `de` и др.)
+- **Сортировка результатов** (релевантность, дата)
+- **Количество результатов** на странице
 
-### `npm run build`
+### 🎨 **Интерфейс**
+- **Адаптивный дизайн**
+- **Темная тема** (планируется)
+- **Индикатор загрузки** при выполнении запросов
+- **Логотип с иконкой поиска**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔌 **Используемый API**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Google Search API (RapidAPI)**
+```javascript
+const baseUrl = "https://google-search72.p.rapidapi.com";
+const options = {
+  headers: {
+    "X-RapidAPI-Key": "570f0ed2cdmsh30dc44b8e51f7b7p18bb4ajsn19eabb1c5b1f",
+    "X-RapidAPI-Host": "google-search72.p.rapidapi.com"
+  }
+};
+```
 
-### `npm run eject`
+**Параметры запроса:**
+- `query`: поисковый запрос
+- `gl`: регион (например, `us`, `ru`)
+- `lr`: язык результатов
+- `num`: количество результатов (по умолчанию 10)
+- `start`: начальная позиция (пагинация)
+- `sort`: тип сортировки (релевантность, дата)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚙️ **Технологический стек**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Технология | Назначение |
+|------------|------------|
+| **React 18** | Библиотека для UI |
+| **React Router DOM v6** | Маршрутизация между страницами |
+| **Axios** | HTTP-запросы к API |
+| **Context API** | Управление глобальным состоянием |
+| **LESS** | Препроцессор CSS (через Craco) |
+| **Craco** | Конфигурация Create React App |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🚦 **Установка и запуск**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Установка зависимостей
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Запуск в режиме разработки
+npm start
 
-### Code Splitting
+# Сборка для продакшена
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Приложение будет доступно по адресу: `http://localhost:3000`
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📱 **Маршруты приложения**
 
-### Making a Progressive Web App
+| Маршрут | Описание | Статус |
+|---------|----------|--------|
+| `/` | Перенаправление на `/search` | ✅ Работает |
+| `/search` | Поиск веб-страниц | ✅ Работает |
+| `/images` | Поиск изображений | ✅ Работает |
+| `/news` | Поиск новостей | 🚧 В разработке |
+| `/videos` | Поиск видео | 🚧 В разработке |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🏗️ **Архитектура состояния (Context API)**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **ResultContext**
+```javascript
+const ResultContext = createContext();
 
-### Deployment
+// Состояние контекста:
+{
+  result: [],        // Результаты поиска
+  isLoading: false,  // Флаг загрузки
+  searchTerm: "",    // Поисковый запрос
+  regionCode: "us",  // Код региона
+  language: "en",    // Язык
+  sortType: "relevance" // Тип сортировки
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### **Доступные функции:**
+- `getResults()` - выполнение поискового запроса
+- `setSearchTerm()` - установка поискового запроса
+- `setRegionCode()` - изменение региона
+- `setLanguage()` - изменение языка
+- `setSortType()` - изменение типа сортировки
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎨 **Стилизация**
+
+### **Использование LESS**
+```javascript
+// craco.config.js
+const CracoLessPlugin = require("craco-less");
+module.exports = {
+  plugins: [{ plugin: CracoLessPlugin }]
+};
+```
+
+### **Темная тема**
+- Реализована через CSS-классы (`dark` класс)
+- Переключатель темы в навигационной панели
+- Планируется полная поддержка тем
+
+---
+
+## 📊 **Компоненты**
+
+### **1. App (`App.js`)**
+- Главный компонент приложения
+- Управление темой (темная/светлая)
+- Содержит навигацию, маршруты и подвал
+
+### **2. Navbar (`Navbar.js`)**
+- Логотип "Sercher" с иконкой поиска
+- Переключатель темы
+- Ссылки на разные типы поиска
+
+### **3. Results (`Results.js`)**
+- Отображение результатов поиска
+- Адаптация под разные типы контента
+- Обработка состояния загрузки
+
+### **4. Loading (`Loading.js`)**
+- Анимированный индикатор загрузки
+- Отображается во время выполнения запросов
+
+### **5. Footer (`Footer.js`)**
+- Подвал приложения (в разработке)
+
+### **6. Search (`Search.js`)**
+- Поисковая строка (в разработке)
+
+---
+
+## 🔐 **Вопросы безопасности**
+
+### **API-ключ в коде**
+```javascript
+"X-RapidAPI-Key": "570f0ed2cdmsh30dc44b8e51f7b7p18bb4ajsn19eabb1c5b1f"
+```
+
+**Рекомендации:**
+1. **Вынести ключ в переменные окружения**
+2. **Использовать .env файл**:
+```
+REACT_APP_RAPIDAPI_KEY=your_actual_key_here
+REACT_APP_RAPIDAPI_HOST=google-search72.p.rapidapi.com
+```
+
+---
+
+## 📈 **Формат результатов поиска**
+
+### **Структура ответа API:**
+```javascript
+{
+  items: [
+    {
+      link: "https://example.com",
+      title: "Example Page Title",
+      snippet: "Short description...",
+      // ... другие поля в зависимости от типа поиска
+    }
+  ],
+  searchInformation: {
+    totalResults: "1000",
+    searchTime: 0.45
+  }
+}
+```
+
+## 🎯 **Особенности проекта**
+
+### **Текущее состояние:**
+- ✅ Работает поиск веб-страниц и изображений
+- ✅ Адаптивная маршрутизация
+- ✅ Контекст для управления состоянием
+- ✅ Индикатор загрузки
+- 🚧 Поиск новостей и видео в разработке
+- 🚧 Подвал и поисковая строка в разработке
+
+### **Архитектурные решения:**
+- **Context API вместо Redux** - для простоты
+- **Модульная структура компонентов** - для переиспользования
+- **LESS для стилей** - для удобства написания CSS
+- **Axios для HTTP-запросов** - с обработкой ошибок
+
+---
+
+## 📱 **Адаптивность**
+
+- **Навигационная панель** адаптируется под мобильные устройства
+- **Результаты поиска** отображаются в виде списка на мобильных
+- **Индикатор загрузки** центрируется на всех размерах экрана
